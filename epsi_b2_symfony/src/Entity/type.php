@@ -8,6 +8,7 @@ class Type
     const Type_Water = 2;
     const Type_Plant = 3;
     const Type_Normal = 4;
+    const Type_Electric = 5;
 
     public function TypeIsStrongAgainst($Attack_Type,$Defense_Type)
     {

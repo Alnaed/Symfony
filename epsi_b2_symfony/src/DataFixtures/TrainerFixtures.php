@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
+
 class TrainerFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
@@ -26,10 +27,7 @@ class TrainerFixtures extends Fixture
     }
 
 
-    public function getOrder()
-    {
-        return 1;
-    }
+
 
     /**@return array */
     public function getUsers()
@@ -41,7 +39,5 @@ class TrainerFixtures extends Fixture
             ['Red',['ROLE_USER'],'Master']
         ];
     }
-
-
 
 }

@@ -28,6 +28,16 @@ class PokemonTeam
      */
     private $Pokemon;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $PokemonNickname;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $PokemonHP;
+
     public function __construct()
     {
         $this->Trainer = new ArrayCollection();
@@ -97,6 +107,30 @@ class PokemonTeam
                 $pokemon->setPokemonTeam(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPokemonNickname(): ?string
+    {
+        return $this->PokemonNickname;
+    }
+
+    public function setPokemonNickname(?string $PokemonNickname): self
+    {
+        $this->PokemonNickname = $PokemonNickname;
+
+        return $this;
+    }
+
+    public function getPokemonHP(): ?int
+    {
+        return $this->PokemonHP;
+    }
+
+    public function setPokemonHP(int $PokemonHP): self
+    {
+        $this->PokemonHP = $PokemonHP;
 
         return $this;
     }

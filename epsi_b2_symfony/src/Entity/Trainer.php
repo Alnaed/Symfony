@@ -37,7 +37,7 @@ class Trainer implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\PokemonTeam", inversedBy="Trainer")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $pokemonTeam;
 

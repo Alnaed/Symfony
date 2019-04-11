@@ -37,7 +37,10 @@ class AttaccFixtures extends Fixture
             ['Vitesse Extreme',100,Type::Type_Normal]
         ];
     }
-
+    public function getOrder()
+    {
+        return 1;
+    }
 }
 
 

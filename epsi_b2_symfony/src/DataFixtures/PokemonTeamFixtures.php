@@ -5,17 +5,23 @@ namespace App\DataFixtures;
 use App\Entity\PokemonTeam;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use App\DataFixtures\TrainerFixtures;
+use App\Entity\Pokemon;
 
 
-class PokemonTeamFixtures extends Fixture
+
+class PokemonTeamFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        foreach($this->getTeams() as [$trainer,$pokemon,$team]) {
+        foreach($this->getTeams() as [$trainer,$pokemon,$nickname,$team]) {
             $PokemonTeam =  new PokemonTeam;
-            $PokemonTeam
-                ->setTrainer($username)
-                ->setPokemon($pokemon)
+            $PokemonTeam 
+            ->addTrainer($this->getReference($trainer))
+            ->addPokemon($this->getReference($pokemon))
+            ->setPokemonNickname($nickname)
+            ->setPokemonHP($this->getReference($pokemon)->getHitpoint())
 
             ;
             $manager ->persist($PokemonTeam);
@@ -24,18 +30,24 @@ class PokemonTeamFixtures extends Fixture
         $manager->flush();
     }
 
-    public function getOrder()
+    public function getDependencies()
     {
-        return 2;
+        return [
+            TrainerFixtures::class
+        ];
     }
+
 
     /**@return array */
     public function getTeams()
     {
         //username, pokemons, name
         return [
-            [$this->getReference('Admin'),[$this->getReference('Arceus')],'ADMINTEAM'],
-            [$this->getReference('Sasha'), [$this->getReference('Limagma'),$this->getReference('Chetiflor'),$this->getReference('Lovdisk')], 'TeamAnime']
+            ['Admin','Arceus','YHWE','ADMINTEAM'],
+            ['Sasha','Limagma','Salamèche','TeamAnime'],
+            ['Sasha','Chetiflor','Bulbizarre', 'TeamAnime1'],
+            ['Sasha','Lovdisk','Carapuce', 'TeamAnime2'],
+            ['Red','Pikachu','Partner','DreamTeam']
         ];
     }
 

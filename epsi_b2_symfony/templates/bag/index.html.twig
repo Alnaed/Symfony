@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inventaire{% endblock %}
+
+{% block body %}
+    <h1>Inventaire</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Potency</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for potion in potion %}
+            <tr>
+                <td>{{ potion.Type }}</td>
+                <td>{{ potion.Potency }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

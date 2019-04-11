@@ -47,4 +47,31 @@ class PokemonRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
+    public function findByType($type)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :Type')
+            ->setParameter('Type', $type)
+            ->orderBy('p.Name', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

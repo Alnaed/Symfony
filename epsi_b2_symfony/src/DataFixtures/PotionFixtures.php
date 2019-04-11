@@ -16,9 +16,12 @@ class PotionFixtures extends Fixture
             $potion
                 ->setType($type)
                 ->setPotency($potency)
+                
             ;
+            $manager ->persist($potion);
+            $reference = $this->addReference($type,$potion);
         }
-
+        $manager->flush();
     }
 
     /**@return array */
