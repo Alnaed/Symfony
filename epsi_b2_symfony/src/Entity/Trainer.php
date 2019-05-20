@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TrainerRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class Trainer implements UserInterface
@@ -40,6 +40,11 @@ class Trainer implements UserInterface
      * @ORM\JoinColumn(nullable=true)
      */
     private $pokemonTeam;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $starterAt;
 
     public function getId(): ?int
     {
@@ -122,6 +127,18 @@ class Trainer implements UserInterface
     public function setPokemonTeam(?PokemonTeam $pokemonTeam): self
     {
         $this->pokemonTeam = $pokemonTeam;
+
+        return $this;
+    }
+
+    public function getStarterAt(): ?\DateTimeInterface
+    {
+        return $this->starterAt;
+    }
+
+    public function setStarterAt(?\DateTimeInterface $starterAt): self
+    {
+        $this->starterAt = $starterAt;
 
         return $this;
     }

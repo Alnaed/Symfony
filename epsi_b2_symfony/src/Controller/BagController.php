@@ -22,6 +22,7 @@ class BagController extends AbstractController
         return $this->render('bag/index.html.twig', [
             'potion' => $potionRepository->findAll(),
         ]);
+        
     }
 
 

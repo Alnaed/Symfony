@@ -18,7 +18,8 @@ class PokemonFixtures extends Fixture
                 ->setName($name)
                 ->setHitPoint($pv)
                 ->setType($type)
-                ->addAttacc($attacc,$attacc2)
+                ->addAttacc($attacc)
+                ->addAttacc($attacc2)
             ;
             $manager ->persist($pokemon);
             $reference = $this->addReference($name,$pokemon);

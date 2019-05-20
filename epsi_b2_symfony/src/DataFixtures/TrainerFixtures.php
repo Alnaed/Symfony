@@ -19,6 +19,7 @@ class TrainerFixtures extends Fixture
                 ->setRoles($role)
                 ->setPassword($password)
 
+
             ;
             $manager ->persist($Trainer);
             $reference = $this->addReference($username,$Trainer);
@@ -36,7 +37,7 @@ class TrainerFixtures extends Fixture
         return [
             ['Admin',['ROLE_ADMIN'],'Admin'],
             ['Sasha', ['ROLE_USER'],'OndineLove'],
-            ['Red',['ROLE_USER'],'Master']
+            ['Red', ['ROLE_USER'],'Master']
         ];
     }
 

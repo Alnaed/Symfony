@@ -2,8 +2,6 @@ security:
     encoders:
         App\Entity\Trainer:
             algorithm: bcrypt
-        App\Entity\Admin:
-            algorithm: bcrypt
 
 
 
@@ -12,8 +10,8 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Admin
-                property: Admin
+                class: App\Entity\Trainer
+                property: username
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
@@ -22,6 +20,12 @@ security:
             security: false
         main:
             anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\ChampionAuthenticator
+            logout:
+                path: app_logout
+            
 
             # activate different ways to authenticate
 
@@ -34,5 +38,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/traceon, roles: ROLE_ADMIN }
+        - { path: ^/dashboard, roles: ROLE_USER }

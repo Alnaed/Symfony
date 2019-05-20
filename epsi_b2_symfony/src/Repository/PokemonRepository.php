@@ -62,7 +62,16 @@ class PokemonRepository extends ServiceEntityRepository
         ;
     }
 
-
+    public function findStarterID()
+    {
+        return $this->createQueryBuilder('p')
+            ->Where('p.Enable = 1 AND p.DeletedAt IS NULL')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 
 
