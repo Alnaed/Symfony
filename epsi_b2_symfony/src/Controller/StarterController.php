@@ -23,7 +23,7 @@ class StarterController extends AbstractController
 
         $starter = $this->getDoctrine()-> getRepository(Pokemon::class)->findStarterID();
 
-        return $this->render('starter/index.html.twig', ['starter' => $starter]);
+        return $this->render('starter/index.html.twig', ['Pokemon' => $starter]);
 
     }
 

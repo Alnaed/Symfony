@@ -82,10 +82,15 @@ class ChampionAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
+        if ($token->getUser()->getStarterAt() == null) {
+            return new RedirectResponse($this->urlGenerator->generate('starter'));
+        }else {
+            return new RedirectResponse($this->urlGenerator->generate('dashboard'));
+        }
+        
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse($this->urlGenerator->generate('dashboard'));
+        
     }
 
     protected function getLoginUrl()

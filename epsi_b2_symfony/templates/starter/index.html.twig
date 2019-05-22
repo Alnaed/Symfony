@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StarterController!{% endblock %}
+{% block title %}Chose your destiny!{% endblock %}
 
 {% block body %}
 <style>
@@ -14,24 +14,24 @@
     Bienvenue jeune dresseur!
     Souhaites-tu:
     <ul>
-    {% for starter in starter %}
+    {% for Pokemon in Pokemon %}
         <li>
-            <td>{{ starter.Name }}:</td>
+            <td><a href="{{path('dashboard')}}" onclick="setStarter({{Pokemon.Name}})">{{ Pokemon.Name }}:</td>
             <ul>
-            {% if starter.Type == 1 %}
+            {% if Pokemon.Type == 1 %}
                 <td>    Type: Feu </td>
-            {% elseif starter.Type == 2 %}
+            {% elseif Pokemon.Type == 2 %}
                 <td> Type: Eau </td>
-            {% elseif starter.Type == 3 %}
+            {% elseif Pokemon.Type == 3 %}
                     <td>Type: Plante</td>
-            {% elseif starter.Type == 4 %}
+            {% elseif Pokemon.Type == 4 %}
                 <td>Type: Normal</td>
-            {% elseif starter.Type == 5 %}
-                <td> Type: Electric</td>
+            {% elseif Pokemon.Type == 5 %}
+                <td> Type: Electrik</td>
             {% endif %}
                 <td></td>
             </ul>
-            {% for Attacc in starter.Attacc %}
+            {% for Attacc in Pokemon.Attacc %}
             <ul>
                 <td>Attaque : {{ Attacc.Name }} </td>
             </ul>
